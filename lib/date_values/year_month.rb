@@ -12,6 +12,10 @@ module DateValues
       super
     end
 
+    def self.from(date)
+      new(date.year, date.month)
+    end
+
     def self.parse(str)
       raise ArgumentError, "invalid YearMonth: #{str}" unless str.match?(/\A\d{4}-\d{2}\z/)
 

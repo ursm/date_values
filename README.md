@@ -24,6 +24,7 @@ ym = YearMonth.new(2026, 3)
 ym.to_s                          # => "2026-03"
 ym.to_date                       # => #<Date: 2026-03-01>
 
+YearMonth.from(Date.today)       # => YearMonth[2026-03]
 YearMonth.parse('2026-03')       # => YearMonth[2026-03]
 
 ym + 1                           # => YearMonth[2026-04]
@@ -42,6 +43,7 @@ md = MonthDay.new(3, 19)
 md.to_s                          # => "--03-19"
 md.to_date(2026)                 # => #<Date: 2026-03-19>
 
+MonthDay.from(Date.today)        # => MonthDay[--03-19]
 MonthDay.parse('--03-19')        # => MonthDay[--03-19]
 ```
 
@@ -53,6 +55,7 @@ tod.to_s                         # => "14:30"
 
 TimeOfDay.new(14, 30, 45).to_s  # => "14:30:45"
 
+TimeOfDay.from(Time.now)         # => TimeOfDay[14:30]
 TimeOfDay.parse('14:30')         # => TimeOfDay[14:30]
 ```
 

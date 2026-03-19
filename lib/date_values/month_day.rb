@@ -13,6 +13,10 @@ module DateValues
       super
     end
 
+    def self.from(date)
+      new(date.month, date.day)
+    end
+
     def self.parse(str)
       raise ArgumentError, "invalid MonthDay: #{str}" unless str.match?(/\A--\d{2}-\d{2}\z/)
 

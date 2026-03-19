@@ -12,6 +12,10 @@ module DateValues
       super
     end
 
+    def self.from(time)
+      new(time.hour, time.min, time.sec)
+    end
+
     def self.parse(str)
       parts = str.split(':')
       raise ArgumentError, "invalid TimeOfDay: #{str}" unless [2, 3].include?(parts.size)

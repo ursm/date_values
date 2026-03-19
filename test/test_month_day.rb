@@ -25,6 +25,10 @@ class TestMonthDay < Minitest::Test
     assert_equal 29, md.day
   end
 
+  def test_from_date
+    assert_equal MonthDay.new(3, 19), MonthDay.from(Date.new(2026, 3, 19))
+  end
+
   def test_parse
     md = MonthDay.parse('--03-19')
     assert_equal MonthDay.new(3, 19), md

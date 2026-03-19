@@ -9,6 +9,8 @@ module DateValues
 
     def initialize: (Integer year, Integer month) -> void
 
+    def self.from: (Date date) -> YearMonth
+
     def self.parse: (String str) -> YearMonth
 
     def <=>: (YearMonth other) -> Integer
@@ -36,6 +38,8 @@ module DateValues
 
     def initialize: (Integer month, Integer day) -> void
 
+    def self.from: (Date date) -> MonthDay
+
     def self.parse: (String str) -> MonthDay
 
     def <=>: (MonthDay other) -> Integer
@@ -60,6 +64,8 @@ module DateValues
     attr_reader second: Integer
 
     def initialize: (Integer hour, Integer minute, ?Integer second) -> void
+
+    def self.from: (Time time) -> TimeOfDay
 
     def self.parse: (String str) -> TimeOfDay
 

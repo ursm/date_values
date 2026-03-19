@@ -14,6 +14,10 @@ class TestYearMonth < Minitest::Test
     assert_raises(ArgumentError) { YearMonth.new(2026, 13) }
   end
 
+  def test_from_date
+    assert_equal YearMonth.new(2026, 3), YearMonth.from(Date.new(2026, 3, 19))
+  end
+
   def test_parse
     ym = YearMonth.parse('2026-03')
     assert_equal YearMonth.new(2026, 3), ym

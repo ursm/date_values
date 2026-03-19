@@ -30,6 +30,10 @@ class TestTimeOfDay < Minitest::Test
     assert_raises(ArgumentError) { TimeOfDay.new(0, 0, 60) }
   end
 
+  def test_from_time
+    assert_equal TimeOfDay.new(14, 30, 45), TimeOfDay.from(Time.new(2026, 3, 19, 14, 30, 45))
+  end
+
   def test_parse_hm
     tod = TimeOfDay.parse('14:30')
     assert_equal TimeOfDay.new(14, 30), tod
