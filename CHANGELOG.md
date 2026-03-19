@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [0.1.3] - 2026-03-20
+
+- Fix ActiveRecord type registration — use `ActiveSupport.on_load(:active_record)` to register types regardless of load order
+- Values now work directly in ActiveRecord queries (`Shop.where(billing_month: YearMonth.new(2026, 3))`)
+
 ## [0.1.2] - 2026-03-19
 
 - Add `#strftime` to `YearMonth`, `MonthDay`, and `TimeOfDay`
