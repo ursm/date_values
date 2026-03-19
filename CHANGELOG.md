@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.1.1] - 2026-03-19
+
+- Add `.from` class methods for converting from `Date` / `Time` (`YearMonth.from(date)`, `MonthDay.from(date)`, `TimeOfDay.from(time)`)
+
 ## [0.1.0] - 2026-03-19
 
 - `DateValues::YearMonth` — year-month value object with arithmetic (`+`, `-`), `Range` support, and `Date` conversion
