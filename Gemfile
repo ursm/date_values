@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-# Specify your gem's dependencies in date_values.gemspec
 gemspec
 
-gem "irb"
-gem "rake", "~> 13.0"
+gem 'irb'
+gem 'rake', '~> 13.0'
 
-gem "minitest", "~> 5.16"
-gem "activemodel"
+gem 'minitest', '~> 5.16'
+gem 'activemodel', ENV.fetch('ACTIVEMODEL_VERSION', '~> 8.1')

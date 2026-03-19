@@ -65,7 +65,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  activemodel
+  activemodel (~> 8.1)
   date_values!
   irb
   minitest (~> 5.16)
