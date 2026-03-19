@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [0.1.2] - 2026-03-19
+
+- Add `#strftime` to `YearMonth`, `MonthDay`, and `TimeOfDay`
+- Add I18n backend extension for Rails `l` helper — looks up `year_month.formats`, `month_day.formats`, and `time_of_day.formats` in locale files
+
 ## [0.1.1] - 2026-03-19
 
 - Add `.from` class methods for converting from `Date` / `Time` (`YearMonth.from(date)`, `MonthDay.from(date)`, `TimeOfDay.from(time)`)
