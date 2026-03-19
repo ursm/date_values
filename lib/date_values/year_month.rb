@@ -62,7 +62,7 @@ module DateValues
     end
 
     def inspect
-      "YearMonth[#{self}]"
+      "#<DateValues::YearMonth #{self}>"
     end
   end
 end

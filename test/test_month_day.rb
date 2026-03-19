@@ -62,6 +62,6 @@ class TestMonthDay < Minitest::Test
   end
 
   def test_inspect
-    assert_equal 'MonthDay[--03-19]', MonthDay.new(3, 19).inspect
+    assert_equal '#<DateValues::MonthDay --03-19>', MonthDay.new(3, 19).inspect
   end
 end

@@ -24,16 +24,16 @@ ym = YearMonth.new(2026, 3)
 ym.to_s                          # => "2026-03"
 ym.to_date                       # => #<Date: 2026-03-01>
 
-YearMonth.from(Date.today)       # => YearMonth[2026-03]
-YearMonth.parse('2026-03')       # => YearMonth[2026-03]
+YearMonth.from(Date.today)       # => #<DateValues::YearMonth 2026-03>
+YearMonth.parse('2026-03')       # => #<DateValues::YearMonth 2026-03>
 
-ym + 1                           # => YearMonth[2026-04]
-ym - 1                           # => YearMonth[2026-02]
+ym + 1                           # => #<DateValues::YearMonth 2026-04>
+ym - 1                           # => #<DateValues::YearMonth 2026-02>
 YearMonth.new(2026, 3) - YearMonth.new(2025, 1)  # => 14
 
 # Range support
 (YearMonth.new(2026, 1)..YearMonth.new(2026, 3)).to_a
-# => [YearMonth[2026-01], YearMonth[2026-02], YearMonth[2026-03]]
+# => [#<DateValues::YearMonth 2026-01>, #<DateValues::YearMonth 2026-02>, #<DateValues::YearMonth 2026-03>]
 ```
 
 ### MonthDay
@@ -43,8 +43,8 @@ md = MonthDay.new(3, 19)
 md.to_s                          # => "--03-19"
 md.to_date(2026)                 # => #<Date: 2026-03-19>
 
-MonthDay.from(Date.today)        # => MonthDay[--03-20]
-MonthDay.parse('--03-19')        # => MonthDay[--03-19]
+MonthDay.from(Date.today)        # => #<DateValues::MonthDay --03-20>
+MonthDay.parse('--03-19')        # => #<DateValues::MonthDay --03-19>
 
 # Range membership
 summer = MonthDay.new(6, 1)..MonthDay.new(8, 31)
@@ -59,8 +59,8 @@ tod.to_s                         # => "14:30"
 
 TimeOfDay.new(14, 30, 45).to_s  # => "14:30:45"
 
-TimeOfDay.from(Time.now)         # => TimeOfDay[14:30]
-TimeOfDay.parse('14:30')         # => TimeOfDay[14:30]
+TimeOfDay.from(Time.now)         # => #<DateValues::TimeOfDay 14:30>
+TimeOfDay.parse('14:30')         # => #<DateValues::TimeOfDay 14:30>
 
 # Range membership
 business_hours = TimeOfDay.new(9, 0)..TimeOfDay.new(17, 0)

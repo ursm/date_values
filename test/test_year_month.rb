@@ -73,6 +73,6 @@ class TestYearMonth < Minitest::Test
   end
 
   def test_inspect
-    assert_equal 'YearMonth[2026-03]', YearMonth.new(2026, 3).inspect
+    assert_equal '#<DateValues::YearMonth 2026-03>', YearMonth.new(2026, 3).inspect
   end
 end

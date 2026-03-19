@@ -44,7 +44,7 @@ module DateValues
     end
 
     def inspect
-      "MonthDay[#{self}]"
+      "#<DateValues::MonthDay #{self}>"
     end
 
     private

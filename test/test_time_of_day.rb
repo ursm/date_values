@@ -69,6 +69,6 @@ class TestTimeOfDay < Minitest::Test
   end
 
   def test_inspect
-    assert_equal 'TimeOfDay[14:30]', TimeOfDay.new(14, 30).inspect
+    assert_equal '#<DateValues::TimeOfDay 14:30>', TimeOfDay.new(14, 30).inspect
   end
 end

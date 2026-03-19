@@ -42,7 +42,7 @@ module DateValues
     end
 
     def inspect
-      "TimeOfDay[#{self}]"
+      "#<DateValues::TimeOfDay #{self}>"
     end
   end
 end
