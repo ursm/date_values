@@ -56,6 +56,27 @@ TimeOfDay.new(14, 30, 45).to_s  # => "14:30:45"
 TimeOfDay.parse('14:30')         # => TimeOfDay[14:30]
 ```
 
+### Pattern Matching
+
+Built on `Data.define`, so pattern matching works out of the box:
+
+```ruby
+case YearMonth.new(2026, 3)
+in { year: 2026, month: (1..3) }
+  puts 'Q1 2026'
+end
+
+case MonthDay.new(12, 25)
+in { month: 12, day: 25 }
+  puts 'Christmas'
+end
+
+case TimeOfDay.new(14, 30)
+in { hour: (9..17) }
+  puts 'Business hours'
+end
+```
+
 ## Rails Integration
 
 Opt-in ActiveModel type casting for ActiveRecord attributes:
