@@ -28,6 +28,8 @@ jobs:
         exclude:
           - ruby: '4.0'
             rails: '7.2'
+    env:
+      ACTIVEMODEL_VERSION: '~> ${{ matrix.rails }}.0'
 
     steps:
       - uses: actions/checkout@v6
@@ -37,8 +39,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true
-        env:
-          ACTIVEMODEL_VERSION: '~> ${{ matrix.rails }}.0'
+          bundler-cache: false
+      - name: Bundle install
+        run: |
+          bundle config set frozen false
+          bundle install --jobs 4
       - name: Run the default task
         run: bundle exec rake
