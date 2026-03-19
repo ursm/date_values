@@ -29,6 +29,10 @@ module DateValues
       [hour, minute, second] <=> [other.hour, other.minute, other.second]
     end
 
+    def strftime(format)
+      Time.new(2000, 1, 1, hour, minute, second).strftime(format)
+    end
+
     def to_s
       if second.zero?
         format('%02d:%02d', hour, minute)

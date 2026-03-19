@@ -94,6 +94,43 @@ class Shop < ApplicationRecord
 end
 ```
 
+### I18n / `l` Helper
+
+All classes implement `#strftime`, and the Rails integration extends `I18n.l` to support them. Define formats in your locale files:
+
+```yaml
+# config/locales/en.yml
+en:
+  year_month:
+    formats:
+      default: '%B %Y'
+  month_day:
+    formats:
+      default: '%B %-d'
+  time_of_day:
+    formats:
+      default: '%-I:%M %p'
+```
+
+```yaml
+# config/locales/ja.yml
+ja:
+  year_month:
+    formats:
+      default: '%Y年%-m月'
+  month_day:
+    formats:
+      default: '%-m月%-d日'
+  time_of_day:
+    formats:
+      default: '%-H時%M分'
+```
+
+```ruby
+I18n.l YearMonth.new(2026, 3), locale: :en  # => "March 2026"
+I18n.l YearMonth.new(2026, 3), locale: :ja  # => "2026年3月"
+```
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

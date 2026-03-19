@@ -56,6 +56,10 @@ class TestTimeOfDay < Minitest::Test
     assert_equal TimeOfDay.new(14, 30), TimeOfDay.new(14, 30, 0)
   end
 
+  def test_strftime
+    assert_equal '02:30 PM', TimeOfDay.new(14, 30).strftime('%I:%M %p')
+  end
+
   def test_to_s_without_second
     assert_equal '14:30', TimeOfDay.new(14, 30).to_s
   end

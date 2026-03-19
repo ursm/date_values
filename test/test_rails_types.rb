@@ -119,3 +119,43 @@ class TestTimeOfDayType < Minitest::Test
     assert_equal TimeOfDay.new(14, 30, 45), @type.deserialize(Time.new(2000, 1, 1, 14, 30, 45))
   end
 end
+
+class TestI18nBackend < Minitest::Test
+  def setup
+    I18n.backend.store_translations(:ja, {
+      year_month:  {formats: {default: '%Y年%-m月', short: '%Y/%m'}},
+      month_day:   {formats: {default: '%-m月%-d日'}},
+      time_of_day: {formats: {default: '%-H時%M分'}}
+    })
+  end
+
+  def teardown
+    I18n.backend.reload!
+  end
+
+  def test_localize_year_month
+    assert_equal '2026年3月', I18n.l(YearMonth.new(2026, 3), locale: :ja)
+  end
+
+  def test_localize_year_month_with_format
+    assert_equal '2026/03', I18n.l(YearMonth.new(2026, 3), locale: :ja, format: :short)
+  end
+
+  def test_localize_month_day
+    assert_equal '3月19日', I18n.l(MonthDay.new(3, 19), locale: :ja)
+  end
+
+  def test_localize_time_of_day
+    assert_equal '14時30分', I18n.l(TimeOfDay.new(14, 30), locale: :ja)
+  end
+
+  def test_localize_with_string_format
+    assert_equal '2026-03', I18n.l(YearMonth.new(2026, 3), locale: :ja, format: '%Y-%m')
+  end
+
+  def test_localize_missing_format
+    assert_raises(I18n::MissingTranslationData) {
+      I18n.l(YearMonth.new(2026, 3), locale: :ja, format: :unknown)
+    }
+  end
+end

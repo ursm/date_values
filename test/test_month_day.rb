@@ -45,6 +45,14 @@ class TestMonthDay < Minitest::Test
     assert_equal MonthDay.new(3, 19), MonthDay.new(3, 19)
   end
 
+  def test_strftime
+    assert_equal '03月19日', MonthDay.new(3, 19).strftime('%m月%d日')
+  end
+
+  def test_strftime_feb_29
+    assert_equal '02月29日', MonthDay.new(2, 29).strftime('%m月%d日')
+  end
+
   def test_to_date
     assert_equal Date.new(2026, 3, 19), MonthDay.new(3, 19).to_date(2026)
   end

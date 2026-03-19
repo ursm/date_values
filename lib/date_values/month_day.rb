@@ -30,6 +30,11 @@ module DateValues
       [month, day] <=> [other.month, other.day]
     end
 
+    def strftime(format)
+      # 2000 is a leap year, so Feb 29 works
+      Date.new(2000, month, day).strftime(format)
+    end
+
     def to_date(year)
       Date.new(year, month, day)
     end

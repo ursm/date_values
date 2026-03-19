@@ -49,6 +49,10 @@ module DateValues
       self + 1
     end
 
+    def strftime(format)
+      to_date.strftime(format)
+    end
+
     def to_date
       Date.new(year, month, 1)
     end

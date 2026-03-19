@@ -60,6 +60,10 @@ class TestYearMonth < Minitest::Test
     assert_equal [YearMonth.new(2026, 1), YearMonth.new(2026, 2), YearMonth.new(2026, 3)], range.to_a
   end
 
+  def test_strftime
+    assert_equal '2026年03月', YearMonth.new(2026, 3).strftime('%Y年%m月')
+  end
+
   def test_to_date
     assert_equal Date.new(2026, 3, 1), YearMonth.new(2026, 3).to_date
   end
