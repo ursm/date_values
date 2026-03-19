@@ -38,6 +38,8 @@ YearMonth.new(2026, 3) - YearMonth.new(2025, 1)  # => 14
 
 ### MonthDay
 
+String representation uses ISO 8601 `--MM-DD` format (year omitted):
+
 ```ruby
 md = MonthDay.new(3, 19)
 md.to_s                          # => "--03-19"
