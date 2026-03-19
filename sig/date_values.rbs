@@ -1,0 +1,73 @@
+module DateValues
+  VERSION: String
+
+  class YearMonth
+    include Comparable
+
+    attr_reader year: Integer
+    attr_reader month: Integer
+
+    def initialize: (Integer year, Integer month) -> void
+
+    def self.parse: (String str) -> YearMonth
+
+    def <=>: (YearMonth other) -> Integer
+           | (untyped other) -> nil
+
+    def +: (Integer n) -> YearMonth
+
+    def -: (Integer n) -> YearMonth
+         | (YearMonth other) -> Integer
+
+    def succ: () -> YearMonth
+
+    def to_date: () -> Date
+
+    def to_s: () -> String
+
+    def inspect: () -> String
+  end
+
+  class MonthDay
+    include Comparable
+
+    attr_reader month: Integer
+    attr_reader day: Integer
+
+    def initialize: (Integer month, Integer day) -> void
+
+    def self.parse: (String str) -> MonthDay
+
+    def <=>: (MonthDay other) -> Integer
+           | (untyped other) -> nil
+
+    def to_date: (Integer year) -> Date
+
+    def to_s: () -> String
+
+    def inspect: () -> String
+
+    private
+
+    def max_day: (Integer m) -> Integer
+  end
+
+  class TimeOfDay
+    include Comparable
+
+    attr_reader hour: Integer
+    attr_reader minute: Integer
+    attr_reader second: Integer
+
+    def initialize: (Integer hour, Integer minute, ?Integer second) -> void
+
+    def self.parse: (String str) -> TimeOfDay
+
+    def <=>: (TimeOfDay other) -> Integer
+           | (untyped other) -> nil
+
+    def to_s: () -> String
+
+    def inspect: () -> String
+  end
+end

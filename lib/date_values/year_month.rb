@@ -1,0 +1,60 @@
+# frozen_string_literal: true
+
+require 'date'
+
+module DateValues
+  YearMonth = Data.define(:year, :month) do
+    include Comparable
+
+    def initialize(year:, month:)
+      raise ArgumentError, "invalid month: #{month}" unless (1..12).include?(month)
+
+      super
+    end
+
+    def self.parse(str)
+      raise ArgumentError, "invalid YearMonth: #{str}" unless str.match?(/\A\d{4}-\d{2}\z/)
+
+      year, month = str.split('-').map(&:to_i)
+      new(year, month)
+    end
+
+    def <=>(other)
+      return nil unless other.is_a?(YearMonth)
+
+      [year, month] <=> [other.year, other.month]
+    end
+
+    def +(n)
+      total = (year * 12 + (month - 1)) + n
+      self.class.new(total / 12, total % 12 + 1)
+    end
+
+    def -(other)
+      case other
+      when Integer
+        self + (-other)
+      when YearMonth
+        (year * 12 + month) - (other.year * 12 + other.month)
+      else
+        raise TypeError, "#{other.class} can't be coerced into Integer or YearMonth"
+      end
+    end
+
+    def succ
+      self + 1
+    end
+
+    def to_date
+      Date.new(year, month, 1)
+    end
+
+    def to_s
+      format('%04d-%02d', year, month)
+    end
+
+    def inspect
+      "YearMonth[#{self}]"
+    end
+  end
+end
