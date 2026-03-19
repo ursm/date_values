@@ -12,4 +12,10 @@ ActiveModel::Type.register(:year_month, DateValues::Rails::YearMonthType)
 ActiveModel::Type.register(:month_day, DateValues::Rails::MonthDayType)
 ActiveModel::Type.register(:time_of_day, DateValues::Rails::TimeOfDayType)
 
+ActiveSupport.on_load(:active_record) do
+  ActiveRecord::Type.register(:year_month, DateValues::Rails::YearMonthType)
+  ActiveRecord::Type.register(:month_day, DateValues::Rails::MonthDayType)
+  ActiveRecord::Type.register(:time_of_day, DateValues::Rails::TimeOfDayType)
+end
+
 I18n::Backend::Base.prepend(DateValues::Rails::I18nBackend)
