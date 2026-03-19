@@ -43,8 +43,12 @@ md = MonthDay.new(3, 19)
 md.to_s                          # => "--03-19"
 md.to_date(2026)                 # => #<Date: 2026-03-19>
 
-MonthDay.from(Date.today)        # => MonthDay[--03-19]
+MonthDay.from(Date.today)        # => MonthDay[--03-20]
 MonthDay.parse('--03-19')        # => MonthDay[--03-19]
+
+# Range membership
+summer = MonthDay.new(6, 1)..MonthDay.new(8, 31)
+summer.include?(MonthDay.new(7, 15))  # => true
 ```
 
 ### TimeOfDay
@@ -57,6 +61,10 @@ TimeOfDay.new(14, 30, 45).to_s  # => "14:30:45"
 
 TimeOfDay.from(Time.now)         # => TimeOfDay[14:30]
 TimeOfDay.parse('14:30')         # => TimeOfDay[14:30]
+
+# Range membership
+business_hours = TimeOfDay.new(9, 0)..TimeOfDay.new(17, 0)
+business_hours.include?(TimeOfDay.new(12, 30))  # => true
 ```
 
 ### Pattern Matching
