@@ -102,6 +102,13 @@ class Shop < ApplicationRecord
 end
 ```
 
+Values are automatically serialized in queries:
+
+```ruby
+Shop.where(billing_month: YearMonth.new(2026, 3))
+# SELECT * FROM shops WHERE billing_month = '2026-03'
+```
+
 ### I18n / `l` Helper
 
 All classes implement `#strftime`, and the Rails integration extends `I18n.l` to support them. Define formats in your locale files:
