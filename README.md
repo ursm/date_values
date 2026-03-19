@@ -48,7 +48,7 @@ MonthDay.parse('--03-19')        # => MonthDay[--03-19]
 
 # Range membership
 summer = MonthDay.new(6, 1)..MonthDay.new(8, 31)
-summer.include?(MonthDay.new(7, 15))  # => true
+summer.cover?(MonthDay.new(7, 15))    # => true
 ```
 
 ### TimeOfDay
@@ -64,7 +64,7 @@ TimeOfDay.parse('14:30')         # => TimeOfDay[14:30]
 
 # Range membership
 business_hours = TimeOfDay.new(9, 0)..TimeOfDay.new(17, 0)
-business_hours.include?(TimeOfDay.new(12, 30))  # => true
+business_hours.cover?(TimeOfDay.new(12, 30))    # => true
 ```
 
 ### Pattern Matching
