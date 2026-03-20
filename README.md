@@ -127,6 +127,7 @@ en:
   time_of_day:
     formats:
       default: '%-I:%M %p'
+      long: '%-I:%M:%S %p'
 ```
 
 ```yaml
@@ -141,11 +142,13 @@ ja:
   time_of_day:
     formats:
       default: '%-H時%M分'
+      long: '%-H時%M分%S秒'
 ```
 
 ```ruby
-I18n.l YearMonth.new(2026, 3), locale: :en  # => "March 2026"
-I18n.l YearMonth.new(2026, 3), locale: :ja  # => "2026年3月"
+I18n.l YearMonth.new(2026, 3), locale: :en   # => "March 2026"
+I18n.l YearMonth.new(2026, 3), locale: :ja   # => "2026年3月"
+I18n.l TimeOfDay.new(14, 30), format: :long  # => "2:30:00 PM"
 ```
 
 ## License
