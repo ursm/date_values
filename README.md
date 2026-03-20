@@ -26,6 +26,7 @@ ym.to_date                       # => #<Date: 2026-03-01>
 
 YearMonth.from(Date.today)       # => #<DateValues::YearMonth 2026-03>
 YearMonth.parse('2026-03')       # => #<DateValues::YearMonth 2026-03>
+YearMonth.parse('2026/3')        # also works
 
 ym + 1                           # => #<DateValues::YearMonth 2026-04>
 ym - 1                           # => #<DateValues::YearMonth 2026-02>
@@ -47,6 +48,7 @@ md.to_date(2026)                 # => #<Date: 2026-03-19>
 
 MonthDay.from(Date.today)        # => #<DateValues::MonthDay --03-20>
 MonthDay.parse('--03-19')        # => #<DateValues::MonthDay --03-19>
+MonthDay.parse('3/19')           # also works
 
 # Range membership
 summer = MonthDay.new(6, 1)..MonthDay.new(8, 31)
@@ -102,6 +104,13 @@ class Shop < ApplicationRecord
   attribute :anniversary,   :month_day    # string column "--03-19"
   attribute :opens_at,      :time_of_day  # string or time column
 end
+```
+
+Cast accepts Hash params from forms, so select-based inputs work naturally:
+
+```ruby
+# params[:shop][:anniversary] => {"month" => "3", "day" => "19"}
+shop.anniversary  # => #<DateValues::MonthDay --03-19>
 ```
 
 Values are automatically serialized in queries:
