@@ -141,7 +141,7 @@ ja:
       default: '%-m月%-d日'
   time_of_day:
     formats:
-      default: '%-H時%M分'
+      default: '%-H時%-M分'
       long: '%-H時%-M分%-S秒'
 ```
 

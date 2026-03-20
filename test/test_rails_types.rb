@@ -125,7 +125,7 @@ class TestI18nBackend < Minitest::Test
     I18n.backend.store_translations(:ja, {
       year_month:  {formats: {default: '%Y年%-m月', short: '%Y/%m'}},
       month_day:   {formats: {default: '%-m月%-d日'}},
-      time_of_day: {formats: {default: '%-H時%M分'}}
+      time_of_day: {formats: {default: '%-H時%-M分'}}
     })
   end
 
