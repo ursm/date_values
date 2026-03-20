@@ -128,7 +128,18 @@ class Contract < ApplicationRecord
 end
 ```
 
-Invalid input (e.g. `"25:00"`) is cast to `nil` rather than raising, following the same convention as Rails' built-in types.
+Invalid input (e.g. `"25:00"`) is cast to `nil` rather than raising, following the same convention as Rails' built-in types. The `date_value` validator detects this and gives a meaningful error message:
+
+```ruby
+class Shop < ApplicationRecord
+  attribute :opens_at, :time_of_day
+
+  validates :opens_at, presence: true, date_value: true
+end
+
+Shop.new(opens_at: '25:00').errors[:opens_at]  # => ["is invalid"]
+Shop.new(opens_at: '').errors[:opens_at]       # => ["can't be blank"]
+```
 
 
 ### I18n / `l` Helper
