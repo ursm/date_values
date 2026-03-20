@@ -1,5 +1,12 @@
 ## [Unreleased]
 
+## [0.1.4] - 2026-03-20
+
+- Cast returns `nil` for invalid input instead of raising, following Rails convention
+- Add `date_value` validator to distinguish "invalid input" from "no input"
+- `#inspect` now uses `#<ClassName value>` format following Ruby convention
+- Works with Rails standard validators (`comparison`, `inclusion`, `exclusion`)
+
 ## [0.1.3] - 2026-03-20
 
 - Fix ActiveRecord type registration — use `ActiveSupport.on_load(:active_record)` to register types regardless of load order
