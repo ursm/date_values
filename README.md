@@ -111,6 +111,25 @@ Shop.where(billing_month: YearMonth.new(2026, 3))
 # SELECT * FROM shops WHERE billing_month = '2026-03'
 ```
 
+### Validation
+
+All classes are `Comparable` and value-equal, so standard Rails validators work as-is:
+
+```ruby
+class Contract < ApplicationRecord
+  attribute :start_month, :year_month
+  attribute :opens_at,    :time_of_day
+
+  validates :start_month, comparison: {greater_than: -> { YearMonth.from(Date.current) }}
+  validates :opens_at,    comparison: {
+    greater_than_or_equal_to: TimeOfDay.new(9, 0),
+    less_than_or_equal_to:    TimeOfDay.new(17, 0)
+  }
+end
+```
+
+Invalid input (e.g. `"25:00"`) is cast to `nil` rather than raising, following the same convention as Rails' built-in types.
+
 
 ### I18n / `l` Helper
 
