@@ -19,13 +19,15 @@ class TestYearMonth < Minitest::Test
   end
 
   def test_parse
-    ym = YearMonth.parse('2026-03')
-    assert_equal YearMonth.new(2026, 3), ym
+    assert_equal YearMonth.new(2026, 3), YearMonth.parse('2026-03')
+    assert_equal YearMonth.new(2026, 3), YearMonth.parse('2026-3')
+    assert_equal YearMonth.new(2026, 3), YearMonth.parse('2026/03')
+    assert_equal YearMonth.new(2026, 3), YearMonth.parse('2026/3')
   end
 
   def test_parse_invalid
-    assert_raises(ArgumentError) { YearMonth.parse('2026-3') }
-    assert_raises(ArgumentError) { YearMonth.parse('2026/03') }
+    assert_raises(ArgumentError) { YearMonth.parse('03-2026') }
+    assert_raises(ArgumentError) { YearMonth.parse('2026') }
   end
 
   def test_comparable

@@ -17,10 +17,10 @@ module DateValues
     end
 
     def self.parse(str)
-      raise ArgumentError, "invalid YearMonth: #{str}" unless str.match?(/\A\d{4}-\d{2}\z/)
-
-      year, month = str.split('-').map(&:to_i)
-      new(year, month)
+      case str
+      when /\A(\d{4})[\/\-](\d{1,2})\z/ then new($1.to_i, $2.to_i)
+      else raise ArgumentError, "invalid YearMonth: #{str}"
+      end
     end
 
     def <=>(other)

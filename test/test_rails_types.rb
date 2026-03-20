@@ -16,6 +16,11 @@ class TestYearMonthType < Minitest::Test
     assert_equal YearMonth.new(2026, 3), @type.cast('2026-03')
   end
 
+  def test_cast_from_hash
+    assert_equal YearMonth.new(2026, 3), @type.cast({year: 2026, month: 3})
+    assert_equal YearMonth.new(2026, 3), @type.cast({'year' => '2026', 'month' => '3'})
+  end
+
   def test_cast_from_year_month
     ym = YearMonth.new(2026, 3)
     assert_same ym, @type.cast(ym)
@@ -55,6 +60,11 @@ class TestMonthDayType < Minitest::Test
     assert_equal MonthDay.new(3, 19), @type.cast('--03-19')
   end
 
+  def test_cast_from_hash
+    assert_equal MonthDay.new(3, 19), @type.cast({month: 3, day: 19})
+    assert_equal MonthDay.new(3, 19), @type.cast({'month' => '3', 'day' => '19'})
+  end
+
   def test_cast_from_month_day
     md = MonthDay.new(3, 19)
     assert_same md, @type.cast(md)
@@ -88,6 +98,11 @@ class TestTimeOfDayType < Minitest::Test
 
   def test_cast_from_string_with_second
     assert_equal TimeOfDay.new(14, 30, 45), @type.cast('14:30:45')
+  end
+
+  def test_cast_from_hash
+    assert_equal TimeOfDay.new(14, 30), @type.cast({hour: 14, minute: 30})
+    assert_equal TimeOfDay.new(14, 30, 45), @type.cast({'hour' => '14', 'minute' => '30', 'second' => '45'})
   end
 
   def test_cast_from_time

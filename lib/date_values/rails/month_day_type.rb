@@ -10,6 +10,7 @@ module DateValues
       def cast(value)
         case value
         when MonthDay then value
+        when Hash     then cast_hash(value)
         when String   then MonthDay.parse(value)
         when nil      then nil
         end
@@ -25,6 +26,17 @@ module DateValues
         return nil if value.nil?
 
         MonthDay.parse(value)
+      end
+
+      private
+
+      def cast_hash(hash)
+        hash  = hash.transform_keys(&:to_sym)
+        month = hash[:month]&.to_i
+        day   = hash[:day]&.to_i
+        return nil unless month && day
+
+        MonthDay.new(month, day)
       end
     end
   end

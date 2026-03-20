@@ -30,13 +30,17 @@ class TestMonthDay < Minitest::Test
   end
 
   def test_parse
-    md = MonthDay.parse('--03-19')
-    assert_equal MonthDay.new(3, 19), md
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('--03-19')
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('--3-19')
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('03-19')
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('3-19')
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('03/19')
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('3/19')
   end
 
   def test_parse_invalid
-    assert_raises(ArgumentError) { MonthDay.parse('03-19') }
-    assert_raises(ArgumentError) { MonthDay.parse('--3-19') }
+    assert_raises(ArgumentError) { MonthDay.parse('2026-03-19') }
+    assert_raises(ArgumentError) { MonthDay.parse('March 19') }
   end
 
   def test_comparable

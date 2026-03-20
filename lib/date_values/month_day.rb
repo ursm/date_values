@@ -18,10 +18,11 @@ module DateValues
     end
 
     def self.parse(str)
-      raise ArgumentError, "invalid MonthDay: #{str}" unless str.match?(/\A--\d{2}-\d{2}\z/)
-
-      month, day = str[2..].split('-').map(&:to_i)
-      new(month, day)
+      case str
+      when /\A--(\d{1,2})-(\d{1,2})\z/ then new($1.to_i, $2.to_i)
+      when /\A(\d{1,2})[\/\-](\d{1,2})\z/ then new($1.to_i, $2.to_i)
+      else raise ArgumentError, "invalid MonthDay: #{str}"
+      end
     end
 
     def <=>(other)
