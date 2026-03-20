@@ -12,8 +12,9 @@ module DateValues
         when MonthDay then value
         when String   then MonthDay.parse(value)
         when nil      then nil
-        else raise ArgumentError, "can't cast #{value.class} to MonthDay"
         end
+      rescue ArgumentError
+        nil
       end
 
       def serialize(value)

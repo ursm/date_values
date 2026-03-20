@@ -13,8 +13,9 @@ module DateValues
         when Time      then TimeOfDay.new(value.hour, value.min, value.sec)
         when String    then TimeOfDay.parse(value)
         when nil       then nil
-        else raise ArgumentError, "can't cast #{value.class} to TimeOfDay"
         end
+      rescue ArgumentError
+        nil
       end
 
       def serialize(value)

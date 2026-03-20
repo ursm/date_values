@@ -18,6 +18,8 @@ class Shop < ActiveRecord::Base
   attribute :billing_month, :year_month
   attribute :anniversary,   :month_day
   attribute :opens_at,      :time_of_day
+
+  validates :billing_month, :anniversary, :opens_at, date_value: true
 end
 
 class TestActiveRecord < Minitest::Test
@@ -51,5 +53,28 @@ class TestActiveRecord < Minitest::Test
     assert_instance_of DateValues::YearMonth, shop.billing_month
     assert_instance_of DateValues::MonthDay, shop.anniversary
     assert_instance_of DateValues::TimeOfDay, shop.opens_at
+  end
+
+  def test_cast_invalid_returns_nil
+    shop = Shop.new(opens_at: '25:00')
+    assert_nil shop.opens_at
+  end
+
+  def test_validation_invalid_value
+    shop = Shop.new(billing_month: 'bad', anniversary: '--13-01', opens_at: '25:00')
+    refute shop.valid?
+    assert_includes shop.errors[:billing_month], 'is invalid'
+    assert_includes shop.errors[:anniversary], 'is invalid'
+    assert_includes shop.errors[:opens_at], 'is invalid'
+  end
+
+  def test_validation_valid_value
+    shop = Shop.new(billing_month: '2026-03', anniversary: '--03-19', opens_at: '09:00')
+    assert shop.valid?
+  end
+
+  def test_validation_nil_is_not_flagged_as_invalid
+    shop = Shop.new(billing_month: nil, anniversary: nil, opens_at: nil)
+    assert shop.valid?
   end
 end

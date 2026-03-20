@@ -122,6 +122,7 @@ end
 
 class TestI18nBackend < Minitest::Test
   def setup
+    I18n.available_locales = [:en, :ja]
     I18n.backend.store_translations(:ja, {
       year_month:  {formats: {default: '%Y年%-m月', short: '%Y/%m'}},
       month_day:   {formats: {default: '%-m月%-d日'}},
@@ -131,6 +132,7 @@ class TestI18nBackend < Minitest::Test
 
   def teardown
     I18n.backend.reload!
+    I18n.available_locales = nil
   end
 
   def test_localize_year_month
