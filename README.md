@@ -142,7 +142,7 @@ ja:
   time_of_day:
     formats:
       default: '%-H時%M分'
-      long: '%-H時%M分%S秒'
+      long: '%-H時%-M分%-S秒'
 ```
 
 ```ruby
