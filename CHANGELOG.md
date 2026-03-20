@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.2.0] - 2026-03-20
+
+- **Breaking**: Rails integration extracted to [date_values-rails](https://github.com/ursm/date_values-rails). `require 'date_values/rails'` now requires installing `date_values-rails` gem.
+
 ## [0.1.4] - 2026-03-20
 
 - Cast returns `nil` for invalid input instead of raising, following Rails convention
