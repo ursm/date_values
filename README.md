@@ -111,19 +111,6 @@ Shop.where(billing_month: YearMonth.new(2026, 3))
 # SELECT * FROM shops WHERE billing_month = '2026-03'
 ```
 
-### Validation
-
-Invalid input (e.g. `"25:00"`) is cast to `nil` rather than raising an exception. Use the `date_value` validator to catch these:
-
-```ruby
-class Shop < ApplicationRecord
-  attribute :opens_at, :time_of_day
-
-  validates :opens_at, presence: true, date_value: true
-end
-
-Shop.new(opens_at: '25:00').valid?  # => false
-```
 
 ### I18n / `l` Helper
 
