@@ -27,6 +27,8 @@ module DateValues
 
     def change: (?year: Integer, ?month: Integer) -> YearMonth
 
+    def days: () -> Integer
+
     def strftime: (String format) -> String
 
     def to_date: () -> Date

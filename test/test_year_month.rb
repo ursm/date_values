@@ -67,6 +67,13 @@ class TestYearMonth < Minitest::Test
     assert_equal YearMonth.new(2026, 1), YearMonth.new(2026, 3).change(month: 1)
   end
 
+  def test_days
+    assert_equal 31, YearMonth.new(2026, 3).days
+    assert_equal 28, YearMonth.new(2026, 2).days
+    assert_equal 29, YearMonth.new(2024, 2).days
+    assert_equal 30, YearMonth.new(2026, 4).days
+  end
+
   def test_range
     range = YearMonth.new(2026, 1)..YearMonth.new(2026, 3)
     assert_equal [YearMonth.new(2026, 1), YearMonth.new(2026, 2), YearMonth.new(2026, 3)], range.to_a

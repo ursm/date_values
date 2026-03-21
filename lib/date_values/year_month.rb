@@ -57,6 +57,10 @@ module DateValues
       self.class.new(year, month)
     end
 
+    def days
+      Date.new(year, month, -1).day
+    end
+
     def strftime(format)
       to_date.strftime(format)
     end
