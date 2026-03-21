@@ -1,6 +1,15 @@
 module DateValues
   VERSION: String
 
+  def self.config: () -> Configuration
+  def self.configure: () { (Configuration) -> void } -> void
+
+  class Configuration
+    attr_accessor month_day_order: :month_first | :day_first
+
+    def initialize: () -> void
+  end
+
   class YearMonth
     include Comparable
 

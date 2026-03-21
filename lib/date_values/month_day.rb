@@ -19,9 +19,18 @@ module DateValues
 
     def self.parse(str)
       case str
-      when /\A--(\d{1,2})-(\d{1,2})\z/ then new($1.to_i, $2.to_i)
-      when /\A(\d{1,2})[\/\-](\d{1,2})\z/ then new($1.to_i, $2.to_i)
-      else raise ArgumentError, "invalid MonthDay: #{str}"
+      when /\A--(\d{1,2})-(\d{1,2})\z/
+        new($1.to_i, $2.to_i)
+      when /\A(\d{1,2})[\/\-](\d{1,2})\z/
+        a, b = $1.to_i, $2.to_i
+
+        if DateValues.config.month_day_order == :day_first
+          new(b, a)
+        else
+          new(a, b)
+        end
+      else
+        raise ArgumentError, "invalid MonthDay: #{str}"
       end
     end
 

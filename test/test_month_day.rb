@@ -38,6 +38,21 @@ class TestMonthDay < Minitest::Test
     assert_equal MonthDay.new(3, 19), MonthDay.parse('3/19')
   end
 
+  def test_parse_day_first
+    DateValues.config.month_day_order = :day_first
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('19/3')
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('19-3')
+  ensure
+    DateValues.config.month_day_order = :month_first
+  end
+
+  def test_parse_day_first_does_not_affect_iso8601
+    DateValues.config.month_day_order = :day_first
+    assert_equal MonthDay.new(3, 19), MonthDay.parse('--03-19')
+  ensure
+    DateValues.config.month_day_order = :month_first
+  end
+
   def test_parse_invalid
     assert_raises(ArgumentError) { MonthDay.parse('2026-03-19') }
     assert_raises(ArgumentError) { MonthDay.parse('March 19') }
