@@ -74,6 +74,7 @@ TimeOfDay.parse('14:30')         # => #<DateValues::TimeOfDay 14:30>
 
 tod + 3600                       # => #<DateValues::TimeOfDay 15:30>
 tod - 1800                       # => #<DateValues::TimeOfDay 14:00>
+TimeOfDay.new(17, 0) - TimeOfDay.new(9, 0)  # => 28800 (seconds)
 tod.advance(hours: 2, minutes: 15)  # => #<DateValues::TimeOfDay 16:45>
 tod.change(minute: 0)            # => #<DateValues::TimeOfDay 14:00>
 tod.to_seconds                   # => 52200
