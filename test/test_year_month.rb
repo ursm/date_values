@@ -57,6 +57,16 @@ class TestYearMonth < Minitest::Test
     assert_equal YearMonth.new(2026, 4), YearMonth.new(2026, 3).succ
   end
 
+  def test_advance
+    assert_equal YearMonth.new(2027, 5), YearMonth.new(2026, 3).advance(years: 1, months: 2)
+    assert_equal YearMonth.new(2025, 1), YearMonth.new(2026, 3).advance(years: -1, months: -2)
+  end
+
+  def test_change
+    assert_equal YearMonth.new(2025, 3), YearMonth.new(2026, 3).change(year: 2025)
+    assert_equal YearMonth.new(2026, 1), YearMonth.new(2026, 3).change(month: 1)
+  end
+
   def test_range
     range = YearMonth.new(2026, 1)..YearMonth.new(2026, 3)
     assert_equal [YearMonth.new(2026, 1), YearMonth.new(2026, 2), YearMonth.new(2026, 3)], range.to_a

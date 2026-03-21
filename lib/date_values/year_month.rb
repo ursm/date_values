@@ -49,6 +49,14 @@ module DateValues
       self + 1
     end
 
+    def advance(years: 0, months: 0)
+      self + (years * 12 + months)
+    end
+
+    def change(year: self.year, month: self.month)
+      self.class.new(year, month)
+    end
+
     def strftime(format)
       to_date.strftime(format)
     end

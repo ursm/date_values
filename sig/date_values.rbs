@@ -23,6 +23,10 @@ module DateValues
 
     def succ: () -> YearMonth
 
+    def advance: (?years: Integer, ?months: Integer) -> YearMonth
+
+    def change: (?year: Integer, ?month: Integer) -> YearMonth
+
     def strftime: (String format) -> String
 
     def to_date: () -> Date
@@ -48,6 +52,8 @@ module DateValues
 
     def <=>: (MonthDay other) -> Integer
            | (untyped other) -> nil
+
+    def change: (?month: Integer, ?day: Integer) -> MonthDay
 
     def strftime: (String format) -> String
 
