@@ -21,20 +21,20 @@ include DateValues
 
 ```ruby
 ym = YearMonth.new(2026, 3)
-ym.to_s                          # => "2026-03"
-ym.to_date                       # => #<Date: 2026-03-01>
-ym.days                          # => 31
+ym.to_s                                          # => "2026-03"
+ym.to_date                                       # => #<Date: 2026-03-01>
+ym.days                                          # => 31
 
-YearMonth.from(Date.today)       # => #<DateValues::YearMonth 2026-03>
-YearMonth.parse('2026-03')       # => #<DateValues::YearMonth 2026-03>
-YearMonth.parse('2026/3')        # also works
+YearMonth.from(Date.today)                       # => #<DateValues::YearMonth 2026-03>
+YearMonth.parse('2026-03')                       # => #<DateValues::YearMonth 2026-03>
+YearMonth.parse('2026/3')                        # also works
 
-ym + 1                           # => #<DateValues::YearMonth 2026-04>
-ym - 1                           # => #<DateValues::YearMonth 2026-02>
+ym + 1                                           # => #<DateValues::YearMonth 2026-04>
+ym - 1                                           # => #<DateValues::YearMonth 2026-02>
 YearMonth.new(2026, 3) - YearMonth.new(2025, 1)  # => 14
 
-ym.advance(years: 1, months: 2)  # => #<DateValues::YearMonth 2027-05>
-ym.change(year: 2025)            # => #<DateValues::YearMonth 2025-03>
+ym.advance(years: 1, months: 2)                  # => #<DateValues::YearMonth 2027-05>
+ym.change(year: 2025)                            # => #<DateValues::YearMonth 2025-03>
 
 # Range support
 (YearMonth.new(2026, 1)..YearMonth.new(2026, 3)).to_a
@@ -47,14 +47,14 @@ String representation uses ISO 8601 `--MM-DD` format (year omitted):
 
 ```ruby
 md = MonthDay.new(3, 19)
-md.to_s                          # => "--03-19"
-md.to_date(2026)                 # => #<Date: 2026-03-19>
+md.to_s                  # => "--03-19"
+md.to_date(2026)         # => #<Date: 2026-03-19>
 
-MonthDay.from(Date.today)        # => #<DateValues::MonthDay --03-20>
-MonthDay.parse('--03-19')        # => #<DateValues::MonthDay --03-19>
-MonthDay.parse('3/19')           # also works (month/day order by default)
+MonthDay.from(Date.today) # => #<DateValues::MonthDay --03-20>
+MonthDay.parse('--03-19') # => #<DateValues::MonthDay --03-19>
+MonthDay.parse('3/19')    # also works (month/day order by default)
 
-md.change(month: 12)             # => #<DateValues::MonthDay --12-19>
+md.change(month: 12)     # => #<DateValues::MonthDay --12-19>
 
 # Range membership
 summer = MonthDay.new(6, 1)..MonthDay.new(8, 31)
@@ -65,23 +65,23 @@ summer.cover?(MonthDay.new(7, 15))    # => true
 
 ```ruby
 tod = TimeOfDay.new(14, 30)
-tod.to_s                         # => "14:30"
+tod.to_s                                        # => "14:30"
 
-TimeOfDay.new(14, 30, 45).to_s  # => "14:30:45"
+TimeOfDay.new(14, 30, 45).to_s                  # => "14:30:45"
 
-TimeOfDay.from(Time.now)         # => #<DateValues::TimeOfDay 14:30>
-TimeOfDay.parse('14:30')         # => #<DateValues::TimeOfDay 14:30>
+TimeOfDay.from(Time.now)                        # => #<DateValues::TimeOfDay 14:30>
+TimeOfDay.parse('14:30')                        # => #<DateValues::TimeOfDay 14:30>
 
-tod + 3600                       # => #<DateValues::TimeOfDay 15:30>
-tod - 1800                       # => #<DateValues::TimeOfDay 14:00>
-TimeOfDay.new(17, 0) - TimeOfDay.new(9, 0)  # => 28800 (seconds)
-tod.advance(hours: 2, minutes: 15)  # => #<DateValues::TimeOfDay 16:45>
-tod.change(minute: 0)            # => #<DateValues::TimeOfDay 14:00>
-tod.to_seconds                   # => 52200
-TimeOfDay.from_seconds(52200)    # => #<DateValues::TimeOfDay 14:30>
+tod + 3600                                       # => #<DateValues::TimeOfDay 15:30>
+tod - 1800                                       # => #<DateValues::TimeOfDay 14:00>
+TimeOfDay.new(17, 0) - TimeOfDay.new(9, 0)       # => 28800 (seconds)
+tod.advance(hours: 2, minutes: 15)                # => #<DateValues::TimeOfDay 16:45>
+tod.change(minute: 0)                             # => #<DateValues::TimeOfDay 14:00>
+tod.to_seconds                                    # => 52200
+TimeOfDay.from_seconds(52200)                     # => #<DateValues::TimeOfDay 14:30>
 
 # Wraps at 24h boundaries
-TimeOfDay.new(23, 30) + 3600    # => #<DateValues::TimeOfDay 00:30>
+TimeOfDay.new(23, 30) + 3600                     # => #<DateValues::TimeOfDay 00:30>
 
 # Range membership
 business_hours = TimeOfDay.new(9, 0)..TimeOfDay.new(17, 0)
