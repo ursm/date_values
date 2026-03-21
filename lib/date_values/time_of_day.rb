@@ -29,6 +29,33 @@ module DateValues
       [hour, minute, second] <=> [other.hour, other.minute, other.second]
     end
 
+    def +(seconds)
+      self.class.from_seconds((to_seconds + seconds) % 86_400)
+    end
+
+    def -(seconds)
+      self + (-seconds)
+    end
+
+    def advance(hours: 0, minutes: 0, seconds: 0)
+      self + (hours * 3600 + minutes * 60 + seconds)
+    end
+
+    def change(hour: self.hour, minute: self.minute, second: self.second)
+      self.class.new(hour, minute, second)
+    end
+
+    def to_seconds
+      hour * 3600 + minute * 60 + second
+    end
+
+    def self.from_seconds(total)
+      total = total % 86_400
+      h, rest = total.divmod(3600)
+      m, s    = rest.divmod(60)
+      new(h, m, s)
+    end
+
     def strftime(format)
       Time.new(2000, 1, 1, hour, minute, second).strftime(format)
     end

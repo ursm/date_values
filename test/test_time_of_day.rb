@@ -56,6 +56,42 @@ class TestTimeOfDay < Minitest::Test
     assert_equal TimeOfDay.new(14, 30), TimeOfDay.new(14, 30, 0)
   end
 
+  def test_addition
+    assert_equal TimeOfDay.new(14, 31), TimeOfDay.new(14, 30) + 60
+    assert_equal TimeOfDay.new(15, 0), TimeOfDay.new(14, 30) + 1800
+  end
+
+  def test_addition_wraps
+    assert_equal TimeOfDay.new(0, 30), TimeOfDay.new(23, 30) + 3600
+  end
+
+  def test_subtraction
+    assert_equal TimeOfDay.new(14, 29), TimeOfDay.new(14, 30) - 60
+  end
+
+  def test_subtraction_wraps
+    assert_equal TimeOfDay.new(23, 30), TimeOfDay.new(0, 30) - 3600
+  end
+
+  def test_advance
+    assert_equal TimeOfDay.new(16, 45, 30), TimeOfDay.new(14, 30).advance(hours: 2, minutes: 15, seconds: 30)
+  end
+
+  def test_change
+    assert_equal TimeOfDay.new(14, 0), TimeOfDay.new(14, 30, 45).change(minute: 0, second: 0)
+    assert_equal TimeOfDay.new(9, 30, 45), TimeOfDay.new(14, 30, 45).change(hour: 9)
+  end
+
+  def test_to_seconds
+    assert_equal 52_245, TimeOfDay.new(14, 30, 45).to_seconds
+    assert_equal 0, TimeOfDay.new(0, 0, 0).to_seconds
+  end
+
+  def test_from_seconds
+    assert_equal TimeOfDay.new(14, 30, 45), TimeOfDay.from_seconds(52_245)
+    assert_equal TimeOfDay.new(0, 0), TimeOfDay.from_seconds(0)
+  end
+
   def test_strftime
     assert_equal '02:30 PM', TimeOfDay.new(14, 30).strftime('%I:%M %p')
   end

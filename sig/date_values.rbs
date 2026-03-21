@@ -75,10 +75,22 @@ module DateValues
 
     def self.from: (Time time) -> TimeOfDay
 
+    def self.from_seconds: (Integer total) -> TimeOfDay
+
     def self.parse: (String str) -> TimeOfDay
 
     def <=>: (TimeOfDay other) -> Integer
            | (untyped other) -> nil
+
+    def +: (Integer seconds) -> TimeOfDay
+
+    def -: (Integer seconds) -> TimeOfDay
+
+    def advance: (?hours: Integer, ?minutes: Integer, ?seconds: Integer) -> TimeOfDay
+
+    def change: (?hour: Integer, ?minute: Integer, ?second: Integer) -> TimeOfDay
+
+    def to_seconds: () -> Integer
 
     def strftime: (String format) -> String
 
