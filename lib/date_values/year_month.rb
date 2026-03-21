@@ -57,6 +57,10 @@ module DateValues
       Date.new(year, month, 1)
     end
 
+    def as_json(*)
+      to_s
+    end
+
     def to_s
       format('%04d-%02d', year, month)
     end

@@ -70,6 +70,10 @@ class TestYearMonth < Minitest::Test
     assert_equal Date.new(2026, 3, 1), YearMonth.new(2026, 3).to_date
   end
 
+  def test_as_json
+    assert_equal '2026-03', YearMonth.new(2026, 3).as_json
+  end
+
   def test_to_s
     assert_equal '2026-03', YearMonth.new(2026, 3).to_s
   end

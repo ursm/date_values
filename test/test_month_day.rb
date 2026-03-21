@@ -61,6 +61,10 @@ class TestMonthDay < Minitest::Test
     assert_equal Date.new(2026, 3, 19), MonthDay.new(3, 19).to_date(2026)
   end
 
+  def test_as_json
+    assert_equal '--03-19', MonthDay.new(3, 19).as_json
+  end
+
   def test_to_s
     assert_equal '--03-19', MonthDay.new(3, 19).to_s
   end

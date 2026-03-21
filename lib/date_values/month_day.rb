@@ -40,6 +40,10 @@ module DateValues
       Date.new(year, month, day)
     end
 
+    def as_json(*)
+      to_s
+    end
+
     def to_s
       format('--%02d-%02d', month, day)
     end

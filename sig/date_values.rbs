@@ -27,6 +27,8 @@ module DateValues
 
     def to_date: () -> Date
 
+    def as_json: (*untyped) -> String
+
     def to_s: () -> String
 
     def inspect: () -> String
@@ -50,6 +52,8 @@ module DateValues
     def strftime: (String format) -> String
 
     def to_date: (Integer year) -> Date
+
+    def as_json: (*untyped) -> String
 
     def to_s: () -> String
 
@@ -77,6 +81,8 @@ module DateValues
            | (untyped other) -> nil
 
     def strftime: (String format) -> String
+
+    def as_json: (*untyped) -> String
 
     def to_s: () -> String
 

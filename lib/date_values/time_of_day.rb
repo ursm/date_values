@@ -33,6 +33,10 @@ module DateValues
       Time.new(2000, 1, 1, hour, minute, second).strftime(format)
     end
 
+    def as_json(*)
+      to_s
+    end
+
     def to_s
       if second.zero?
         format('%02d:%02d', hour, minute)
