@@ -33,8 +33,12 @@ module DateValues
       self.class.from_seconds((to_seconds + seconds) % 86_400)
     end
 
-    def -(seconds)
-      self + (-seconds)
+    def -(other)
+      case other
+      when Integer   then self + (-other)
+      when TimeOfDay then to_seconds - other.to_seconds
+      else raise TypeError, "#{other.class} can't be coerced into Integer or TimeOfDay"
+      end
     end
 
     def advance(hours: 0, minutes: 0, seconds: 0)

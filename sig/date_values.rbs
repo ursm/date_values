@@ -102,6 +102,7 @@ module DateValues
     def +: (Integer seconds) -> TimeOfDay
 
     def -: (Integer seconds) -> TimeOfDay
+         | (TimeOfDay other) -> Integer
 
     def advance: (?hours: Integer, ?minutes: Integer, ?seconds: Integer) -> TimeOfDay
 

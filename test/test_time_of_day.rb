@@ -73,6 +73,11 @@ class TestTimeOfDay < Minitest::Test
     assert_equal TimeOfDay.new(23, 30), TimeOfDay.new(0, 30) - 3600
   end
 
+  def test_subtraction_time_of_day
+    assert_equal 28_800, TimeOfDay.new(17, 0) - TimeOfDay.new(9, 0)
+    assert_equal(-3600, TimeOfDay.new(9, 0) - TimeOfDay.new(10, 0))
+  end
+
   def test_advance
     assert_equal TimeOfDay.new(16, 45, 30), TimeOfDay.new(14, 30).advance(hours: 2, minutes: 15, seconds: 30)
   end
