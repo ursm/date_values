@@ -48,7 +48,7 @@ md.to_date(2026)                 # => #<Date: 2026-03-19>
 
 MonthDay.from(Date.today)        # => #<DateValues::MonthDay --03-20>
 MonthDay.parse('--03-19')        # => #<DateValues::MonthDay --03-19>
-MonthDay.parse('3/19')           # also works
+MonthDay.parse('3/19')           # also works (always month/day order)
 
 # Range membership
 summer = MonthDay.new(6, 1)..MonthDay.new(8, 31)
