@@ -1,5 +1,13 @@
 ## [Unreleased]
 
+## [0.2.1] - 2026-03-21
+
+- Add `TimeOfDay` arithmetic (`+`, `-`), `advance`, `change`, `to_seconds`, `.from_seconds`
+- Add `YearMonth#advance`, `YearMonth#change`, `YearMonth#days`
+- Add `MonthDay#change`
+- Add `#as_json` to all value classes
+- Add `DateValues.config.month_day_order` for locale-dependent `MonthDay.parse`
+
 ## [0.2.0] - 2026-03-20
 
 - **Breaking**: Rails integration extracted to [date_values-rails](https://github.com/ursm/date_values-rails). `require 'date_values/rails'` now requires installing `date_values-rails` gem.
