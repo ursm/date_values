@@ -40,6 +40,8 @@ module DateValues
 
     def strftime: (String format) -> String
 
+    def to_date_range: () -> Range[Date]
+
     def to_date: () -> Date
 
     def as_json: (*untyped) -> String
