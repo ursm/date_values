@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.2.3] - 2026-03-31
+
+- Add `YearMonth#to_date_range` — returns an exclusive `Date` range for the month, ideal for ActiveRecord queries on timestamp columns
+
 ## [0.2.2] - 2026-03-21
 
 - `TimeOfDay#-` accepts `TimeOfDay` to return difference in seconds
