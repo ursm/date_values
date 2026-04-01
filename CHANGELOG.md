@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.2.4] - 2026-04-01
+
 - Remove `YearMonth#to_date_range` — use `ym.to_date.in_time_zone.all_month` instead
 
 ## [0.2.3] - 2026-03-31
