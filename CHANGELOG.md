@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Remove `YearMonth#to_date_range` — use `ym.to_date.in_time_zone.all_month` instead
+
 ## [0.2.3] - 2026-03-31
 
 - Add `YearMonth#to_date_range` — returns an exclusive `Date` range for the month, ideal for ActiveRecord queries on timestamp columns

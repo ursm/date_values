@@ -23,7 +23,6 @@ include DateValues
 ym = YearMonth.new(2026, 3)
 ym.to_s                                          # => "2026-03"
 ym.to_date                                       # => #<Date: 2026-03-01>
-ym.to_date_range                                 # => 2026-03-01...2026-04-01
 ym.days                                          # => 31
 
 YearMonth.from(Date.today)                       # => #<DateValues::YearMonth 2026-03>

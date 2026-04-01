@@ -65,10 +65,6 @@ module DateValues
       to_date.strftime(format)
     end
 
-    def to_date_range
-      to_date...(self + 1).to_date
-    end
-
     def to_date
       Date.new(year, month, 1)
     end
